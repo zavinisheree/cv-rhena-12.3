@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV Latte Theme</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet">
@@ -44,8 +43,6 @@
       box-shadow: 0 12px 24px rgba(101, 67, 33, 0.15);
     }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full font-main">
   <div id="app" class="w-full h-full overflow-auto"></div>
@@ -104,8 +101,9 @@
                     </div>
                   </div>
                   
-                  <div class="w-32 h-32 rounded-2xl overflow-hidden ml-6 flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg, ${secondaryColor} 0%, ${primaryColor} 100%);">
-                    <span style="font-size: 64px;">👤</span>
+                  <!-- Foto Profil -->
+                  <div class="w-32 h-32 rounded-2xl overflow-hidden ml-6 flex-shrink-0 flex items-center justify-center border-4" style="border-color: ${secondaryColor};">
+                    <img src="df776542-17e9-43f0-bfab-79133db77afe.jpg" alt="${fullName}" class="w-full h-full object-cover">
                   </div>
                 </div>
                 
@@ -333,7 +331,7 @@
                 <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">📷 Fotografi</span>
                 <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">🎥 Videografi</span>
                 <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">✍️ Menulis</span>
-                <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">������ Social Media</span>
+                <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">📱 Social Media</span>
                 <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">🎨 Canva Design</span>
                 <span class="px-5 py-2 rounded-full" style="background: ${secondaryColor}; background: linear-gradient(135deg, ${secondaryColor} 0%, rgba(210, 180, 140, 0.3) 100%); font-size: ${baseSize * 0.9}px; color: ${textColor}; font-family: ${customFont}, sans-serif;">📚 Membaca Novel</span>
               </div>
@@ -348,82 +346,8 @@
       `;
     }
 
-    const capabilities = {
-      recolorables: [
-        {
-          get: () => window.elementSdk.config.background_color || defaultConfig.background_color,
-          set: (value) => {
-            window.elementSdk.config.background_color = value;
-            window.elementSdk.setConfig({ background_color: value });
-          }
-        },
-        {
-          get: () => window.elementSdk.config.card_color || defaultConfig.card_color,
-          set: (value) => {
-            window.elementSdk.config.card_color = value;
-            window.elementSdk.setConfig({ card_color: value });
-          }
-        },
-        {
-          get: () => window.elementSdk.config.primary_accent || defaultConfig.primary_accent,
-          set: (value) => {
-            window.elementSdk.config.primary_accent = value;
-            window.elementSdk.setConfig({ primary_accent: value });
-          }
-        },
-        {
-          get: () => window.elementSdk.config.text_color || defaultConfig.text_color,
-          set: (value) => {
-            window.elementSdk.config.text_color = value;
-            window.elementSdk.setConfig({ text_color: value });
-          }
-        },
-        {
-          get: () => window.elementSdk.config.secondary_accent || defaultConfig.secondary_accent,
-          set: (value) => {
-            window.elementSdk.config.secondary_accent = value;
-            window.elementSdk.setConfig({ secondary_accent: value });
-          }
-        }
-      ],
-      borderables: [],
-      fontEditable: {
-        get: () => window.elementSdk.config.font_family || defaultConfig.font_family,
-        set: (value) => {
-          window.elementSdk.config.font_family = value;
-          window.elementSdk.setConfig({ font_family: value });
-        }
-      },
-      fontSizeable: {
-        get: () => window.elementSdk.config.font_size || defaultConfig.font_size,
-        set: (value) => {
-          window.elementSdk.config.font_size = value;
-          window.elementSdk.setConfig({ font_size: value });
-        }
-      }
-    };
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["full_name", config.full_name || defaultConfig.full_name],
-        ["job_title", config.job_title || defaultConfig.job_title],
-        ["email", config.email || defaultConfig.email],
-        ["phone", config.phone || defaultConfig.phone],
-        ["location", config.location || defaultConfig.location]
-      ]);
-    }
-
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange,
-      mapToCapabilities: () => capabilities,
-      mapToEditPanelValues
-    });
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c6a1038574bfe15',t:'MTc2OTg3MTQ2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize the app manually since we removed the external SDK scripts for this standalone version
     onConfigChange(defaultConfig);
-  });
-</script>
+  </script>
+ </body>
+</html>
